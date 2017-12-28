@@ -1,0 +1,9 @@
+body {
+    padding-top: 50px;
+}
+
+.texto-centro {
+    margin: 0px auto;
+    padding-top: 100px;
+    text-align: center;
+}
