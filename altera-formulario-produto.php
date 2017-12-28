@@ -12,25 +12,27 @@ $usado = $produto['usado'] ? "checked='checked'" : "";
         <h1>Alteração de Produto</h1>
 
         <form class="form-horizontal" action="altera-produto.php" method="post">
+
             <input type="hidden" name="id" value="<?= $produto['id'] ?>">
+
             <div class="form-group">
                 <label for="nome" class="col-sm-1 control-label">Nome</label>
                 <div class="col-sm-8">
-                    <input class="form-control" id="nome" name="nome" type="text"/>
+                    <input class="form-control" id="nome" name="nome" type="text" value="<?= $produto['nome'] ?>"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="preco" class="col-sm-1 control-label">Preço</label>
                 <div class="col-sm-5">
-                    <input class="form-control" id="preco" name="preco" type="number"/>
+                    <input class="form-control" id="preco" name="preco" type="number" value="<?= $produto['preco'] ?>"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="descricao" class="col-sm-1 control-label">Descrição</label>
                 <div class="col-sm-5">
-                    <textarea class="form-control" id="descricao" name="descricao" type="text"></textarea>
+                    <textarea class="form-control" id="descricao" name="descricao" type="text"><?= $produto['descricao'] ?></textarea>
                 </div>
             </div>
 
@@ -38,9 +40,14 @@ $usado = $produto['usado'] ? "checked='checked'" : "";
                 <label for="categoria" class="col-sm-1 control-label">Categoria</label>
                 <div class="col-sm-2">
 
-                    <select name="categoria_id" class="form-control">
-                        <?php foreach ($categorias as $categoria): ?>
-                            <option value="<?=$categoria['id']?>"> <?=$categoria['nome']?> </option>
+                    <select name="categoria" class="form-control">
+                        <?php foreach ($categorias as $categoria):
+                            $isCategoria = $produto['categoria'] == $gategoria['id'];
+                            $selecao = $isCategoria ? "selected='selected'" : "";
+                        ?>
+                            <option value="<?= $categoria['id'] ?>" <?= $selecao ?>>
+                                <?= $categoria['nome'] ?>
+                            </option>
                         <?php endforeach; ?>
                     </select>
 
@@ -50,7 +57,7 @@ $usado = $produto['usado'] ? "checked='checked'" : "";
             <div class="form-group">
                 <label for="usado" class="col-sm-1 control-label">Usado</label>
                 <div class="col-sm-5">
-                    <input id="usado" name="usado" type="checkbox" value="true">
+                    <input id="usado" name="usado" type="checkbox" value="true" <?= $usado ?>>
                 </div>
             </div>
 
